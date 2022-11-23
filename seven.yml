@@ -1,0 +1,12 @@
+---
+- hosts: dev
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: creating a file and folder
+      file:
+        path: "/root/devops "
+        state: directory
+        mode: 777   

@@ -1,0 +1,6 @@
+---
+  - set_fact: abc=maven
+  - name: install maven
+    action: yum name= '{{abc}}' state=present
+
+  

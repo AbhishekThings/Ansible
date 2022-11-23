@@ -1,0 +1,23 @@
+---
+- hosts: dev
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: installing httpd
+      action: yum name=httpd state=present
+     
+    - name: restart httpd
+      service: name=httpd state=restarted
+      
+    - name: Creating a file 
+      file:
+       path: "/var/www/html/index.html"
+       state: touch
+
+    - name: Adding content to the file
+      copy:
+         dest: "/var/www/html/index.html"
+         content: |
+           Hi This is my sever wlcoming to you all      

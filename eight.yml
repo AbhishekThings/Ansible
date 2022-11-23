@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+   - name: keeping data in a file.
+     copy:
+      dest: "Jenkins.txt "
+      content: |
+        this is my file which contains all the relavent data   

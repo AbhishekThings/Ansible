@@ -1,0 +1,11 @@
+---
+- hosts: dev
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - include: two.yml
+    - name: git
+      action: yum name=git state=present
+

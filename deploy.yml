@@ -1,0 +1,38 @@
+---
+- hosts: dev
+  user: ansible
+  connection: ssh
+  become: yes
+
+  tasks:
+    
+    - name: getting urlfrom jenkins.io
+      get_url:
+        url:  https://pkg.jenkins.io/redhat-stable/jenkins.repo
+        dest: /etc/yum.repos.d/jenkins.repo
+
+    - name: getting key from jenkins.io
+      ansible.builtin.rpm_key:
+        state: present
+        key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+    - name: updating the above two links
+      action: yum name="*" state=latest
+
+    - name: Installing java
+      command: amazon-linux-extras install java-openjdk11 -y
+
+    - name: installing jenkins
+      action: yum name=jenkins state=present
+
+    - name: reload daemon
+      ansible.builtin.systemd:
+        daemon_reload: yes
+    
+    - name: restart jenkins
+      ansible.builtin.systemd:
+        name: jenkins
+        state: restarted
+
+
+

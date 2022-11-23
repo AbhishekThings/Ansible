@@ -1,0 +1,3 @@
+---
+  - name: installing java in file
+    command: amazon-linux-extras install java -openjdk11 -y

@@ -1,0 +1,11 @@
+---
+- hosts: dev
+  user: ansible
+  connection: ssh
+  become: yes
+
+  tasks:
+    - name: getting repo from github  
+      git:
+        repo: " https://github.com/AbhishekThings/Python.git "
+        dest: " /home/mycode "  

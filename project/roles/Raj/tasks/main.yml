@@ -1,0 +1,6 @@
+---
+  - name: installing httpd in file
+    action: yum name=httpd state=present
+
+  - name: restarting httpd in file
+    service: name=httpd state=restarted    

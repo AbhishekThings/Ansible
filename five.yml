@@ -1,0 +1,15 @@
+---
+- hosts: dev
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: installing httpd in RedHat
+      action: yum name=httpd state=present
+      when: ansible_os_family == "RedHat"
+    
+    - name: installing apache in ubuntu
+      action: yum name=apache state=present
+      when: ansible_os_family == "Ubuntu"    
+
